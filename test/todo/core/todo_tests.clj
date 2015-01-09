@@ -9,12 +9,12 @@
   (fact "Test GET"
     (let [response (app (mock/request :get "/"))]
       (:status response) => 200
-      (:body response) => "TODO"))
+      (:body response) => (contains "Todo")))
 
   (fact "Test POST"
     (let [response (app (mock/request :post "/add-todo" {:todo "TODO"}))]
       (:status response) => 200
-      (:body response) => "You submitted: TODO"))
+      (:body response) => (contains "You submitted: TODO")))
 
   (testing "Invalid Route"
     (let [response (app (mock/request :get "/invalid"))]

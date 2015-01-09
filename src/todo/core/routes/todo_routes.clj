@@ -1,11 +1,16 @@
 (ns todo.core.routes.todo-routes
-  (:require [compojure.core :refer [defroutes GET POST]]))
+  (:require [compojure.core :refer [defroutes GET POST]]
+            [todo.core.views.todo-layout :refer [common-layout]]))
 
+(defn index [request]
+  (common-layout
+    [:p.main "Common Layout"]))
 
 (defn add-todo [request]
   (let [posted (get-in request [:params :todo])]
-    (str "You submitted: " posted)))
+    (common-layout
+      (str "You submitted: " posted))))
 
 (defroutes todo-routes
-  (GET "/" [] "TODO")
+  (GET "/"          [] index)
   (POST "/add-todo" [] add-todo))
