@@ -3,8 +3,7 @@
             [todo.core.views.todo-layout :refer [common-layout]]))
 
 (defn index [request]
-  (common-layout
-    [:p.main "Common Layout"]))
+  (common-layout))
 
 (defn add-todo [request]
   (let [posted (get-in request [:params :todo])]
