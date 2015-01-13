@@ -1,15 +1,17 @@
 (ns todo.core.routes.todo-routes
-  (:require [compojure.core :refer [defroutes GET POST]]
+  (:require [ring.util.response          :as response]
+            [compojure.core              :refer [defroutes GET POST]]
+            [todo.core.models.query-defs :as query]
             [todo.core.views.todo-layout :refer [common-layout]]))
 
 (defn index [request]
   (common-layout))
 
 (defn add-todo [request]
-  (let [posted (get-in request [:params :todo])]
-    (common-layout
-      (str "You submitted: " posted))))
+  (let [todo (get-in request [:params :todo])]
+    (query/insert-todo {:name todo}
+      (response/redirect "/"))))
 
 (defroutes todo-routes
-  (GET "/"          [] index)
+  (GET  "/"         [] index)
   (POST "/add-todo" [] add-todo))

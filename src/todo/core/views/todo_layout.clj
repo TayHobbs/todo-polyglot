@@ -16,3 +16,8 @@
         [:input#new-todo {:type "text" :name "todo" :placeholder "Todo"}]
          [:button#hide-button {:type "submit"} "Add Todo"]
   body]]]))
+
+(defn show-todos [todo]
+  (html
+    [:ul#todo-list
+     [:li (h (:name todo))]]))
