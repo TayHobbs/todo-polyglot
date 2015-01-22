@@ -14,10 +14,12 @@
       [:h1 "Todo"]]
         [:form {:action "/add-todo" :method "post"}
         [:input#new-todo {:type "text" :name "todo" :placeholder "Todo"}]
-         [:button#hide-button {:type "submit"} "Add Todo"]
-  body]]]))
+         [:button#hide-button {:type "submit"} "Add Todo"]]
+  body]]))
 
-(defn show-todos [todo]
+(defn read-todo [todo]
   (html
-    [:ul#todo-list
-     [:li (h (:name todo))]]))
+    [:div.todo
+      [:div.todo-text
+        [:div.column-1 (h (:name todo))]]
+      [:div.clear-row]]))

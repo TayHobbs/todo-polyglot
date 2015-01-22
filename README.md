@@ -1,3 +1,3 @@
-# todo
+# Todo App
 
-Clojure Todo app
+Todo app to learn Clojure
