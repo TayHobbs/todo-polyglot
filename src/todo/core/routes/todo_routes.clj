@@ -1,9 +1,9 @@
 (ns todo.core.routes.todo-routes
   (:require [ring.util.response          :as response]
+            [todo.core.models.query-defs :as query]
             [compojure.core              :refer [defroutes GET POST]]
             [todo.core.views.todo-layout :refer [common-layout
-                                                 read-todo]]
-            [todo.core.models.query-defs :as query]))
+                                                 read-todo]]))
 
 (defn index [request]
   (common-layout

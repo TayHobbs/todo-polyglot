@@ -1,6 +1,7 @@
 (ns todo.core.views.todo-layout
-  (:require [hiccup.page :refer [html5 include-css]]
-           [hiccup.core :refer [html h]]))
+  (:require [hiccup.core :refer [html h]]
+            [hiccup.page :refer [html5
+                                 include-css]]))
 
 
 (defn common-layout [& body]

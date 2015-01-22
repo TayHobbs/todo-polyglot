@@ -1,9 +1,10 @@
 (ns todo.core.handler
-  (:require [compojure.core :refer :all]
-            [compojure.route :as route]
-            [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
-            [todo.core.models.query-defs :as query]
-            [todo.core.routes.todo-routes :refer [todo-routes]]))
+  (:require [compojure.route              :as route]
+            [todo.core.models.query-defs  :as query]
+            [compojure.core               :refer :all]
+            [todo.core.routes.todo-routes :refer [todo-routes]]
+            [ring.middleware.defaults     :refer [wrap-defaults
+                                                  site-defaults]]))
 
 (defn init []
   (query/create-todos-table-if-not-exists!))

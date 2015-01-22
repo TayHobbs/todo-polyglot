@@ -1,8 +1,8 @@
 (ns todo.core.todo-tests
   (:use midje.sweet)
-  (:require [clojure.test :refer :all]
-            [ring.mock.request :as mock]
-            [todo.core.handler :refer :all]
+  (:require [clojure.test                :refer :all]
+            [todo.core.handler           :refer :all]
+            [ring.mock.request           :as mock]
             [todo.core.models.query-defs :as query]))
 
 (facts "Example GET and POST tests"
