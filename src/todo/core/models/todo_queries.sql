@@ -18,3 +18,8 @@ DROP TABLE todos;
 CREATE TABLE IF NOT EXISTS todos (
    id serial PRIMARY KEY,
    name VARCHAR (20) NOT NULL);
+
+-- name: update-todos<!
+-- Update a single todos
+UPDATE todos SET name = :name
+    WHERE id = :id;

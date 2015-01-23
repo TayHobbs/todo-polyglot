@@ -22,5 +22,8 @@
   (html
     [:div.todo
       [:div.todo-text
-        [:div.column-1 (h (:name todo))]]
+       [:form {:action (str "/edit-todo/" (:id todo)) :method "post"}
+        [:input {:type "hidden" :name "id" :value (h (:id todo))}]
+        [:input {:type "text" :name "todo" :value (h (:name todo))}]
+        [:button {:type "Submit"} "Update"]]]
       [:div.clear-row]]))
