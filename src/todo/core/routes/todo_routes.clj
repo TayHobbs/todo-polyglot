@@ -24,4 +24,5 @@
 (defroutes todo-routes
   (GET  "/"                   [] index)
   (POST "/add-todo"           [] add-todo)
+  (GET  "/edit-todo/:todo-id" [] index)
   (POST "/edit-todo/:todo-id" [] edit-todo))
