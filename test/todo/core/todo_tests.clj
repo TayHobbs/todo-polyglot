@@ -33,4 +33,10 @@
         (let [response (app (mock/request :get "/edit-todo/1"))]
           (:status response) => 200
           (count (query/all-todos)) => 1
-          (first (query/all-todos)) => {:id 1 :name "Todo"}))))
+          (first (query/all-todos)) => {:id 1 :name "Todo"}))
+
+  (fact "Test Delete Route POST"
+    (query/insert-todos<! {:name "Todo"})
+        (let [response (app (mock/request :post "/delete-todo/1" {:id "1"}))]
+          (:status response) => 302
+          (count (query/all-todos)) => 0))))

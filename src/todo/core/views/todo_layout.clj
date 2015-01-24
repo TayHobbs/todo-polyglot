@@ -26,4 +26,7 @@
         [:input {:type "hidden" :name "id" :value (h (:id todo))}]
         [:input {:type "text" :name "todo" :value (h (:name todo))}]
         [:button {:type "Submit"} "Update"]]]
+       [:form {:action (str "/delete-todo/" (:id todo)) :method "post"}
+        [:input {:type "hidden" :name "id" :value (h (:id todo))}]
+        [:button {:type "Submit"} "Delete"]]
       [:div.clear-row]]))

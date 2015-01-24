@@ -23,3 +23,8 @@ CREATE TABLE IF NOT EXISTS todos (
 -- Update a single todos
 UPDATE todos SET name = :name
     WHERE id = :id;
+
+-- name: delete-todos<!
+-- Deletes a single todos
+DELETE FROM todos
+    WHERE id = :id;
