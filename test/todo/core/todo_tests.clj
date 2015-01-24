@@ -21,9 +21,16 @@
       (:status response) => 302
       (count (query/all-todos)) => 1))
 
-  (fact "Test Update Route"
+  (fact "Test Update Route POST"
     (query/insert-todos<! {:name "Todo"})
         (let [response (app (mock/request :post "/edit-todo/1" {:id "1" :todo "Updated Todo"}))]
           (:status response) => 302
           (count (query/all-todos)) => 1
-          (first (query/all-todos)) => {:id 1 :name "Updated Todo"}))))
+          (first (query/all-todos)) => {:id 1 :name "Updated Todo"}))
+
+  (fact "Test Update Route GET"
+    (query/insert-todos<! {:name "Todo"})
+        (let [response (app (mock/request :get "/edit-todo/1"))]
+          (:status response) => 200
+          (count (query/all-todos)) => 1
+          (first (query/all-todos)) => {:id 1 :name "Todo"}))))
