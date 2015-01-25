@@ -7,7 +7,7 @@
 
 (defn index [request]
   (common-layout
-    (for [todo (query/all-todos)]
+    (for [todo (reverse (query/all-todos))]
       (read-todo todo))))
 
 (defn add-todo [request]
