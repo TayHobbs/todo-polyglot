@@ -8,7 +8,7 @@
   (html5
   [:head
    [:title "Todo"]
-   (include-css "/css/todo.css")]
+   (include-css "/css/node_modules/todomvc-app-css/index.css")]
   [:body
    [:div#todoapp
      [:div#header
