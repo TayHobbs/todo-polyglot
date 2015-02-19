@@ -1,4 +1,7 @@
 from flask import Flask
 
 app = Flask(__name__)
-from . import views
+app.config.from_object('app.config')
+
+
+from . import views, models
