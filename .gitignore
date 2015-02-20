@@ -11,3 +11,4 @@ pom.xml.asc
 *.pyc
 **/node_modules/
 test.db
+app.db
