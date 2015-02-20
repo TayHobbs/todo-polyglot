@@ -1,8 +1,18 @@
-from flask import render_template
+from flask import render_template, request, redirect, url_for
 
-from . import app
+from . import app, models
+from .db import db
 
 
-@app.route("/")
+@app.route('/')
 def index():
-    return render_template('index.html', hello='Hello')
+    todos = models.Todo.query.all()
+    return render_template('index.html', todos=todos)
+
+
+@app.route('/add-todo', methods=['POST'])
+def add_todo():
+    todo = models.Todo(name=request.form['todo'])
+    db.session.add(todo)
+    db.session.commit()
+    return redirect(url_for('index'))
