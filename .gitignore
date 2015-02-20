@@ -10,3 +10,4 @@ pom.xml.asc
 /.nrepl-port
 *.pyc
 **/node_modules/
+test.db
