@@ -16,3 +16,11 @@ def add_todo():
     db.session.add(todo)
     db.session.commit()
     return redirect(url_for('index'))
+
+
+@app.route('/delete-todo', methods=['POST'])
+def delete_todo():
+    todo = models.Todo.query.get(request.form['id'])
+    db.session.delete(todo)
+    db.session.commit()
+    return redirect(url_for('index'))

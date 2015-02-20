@@ -22,7 +22,9 @@
             <li class="">
                 <input type="checkbox" class="toggle">
                 <label>{{todo.name}}</label>
-                <button class="destroy"></button>
+                <form action="/delete-todo" method="POST">
+                  <button type="submit" name="id" value={{todo.id}} class="destroy"></button>
+                </form>
             </li>
           {% endfor %}
         </ul>

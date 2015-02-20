@@ -37,6 +37,12 @@ class AppTestCase(unittest.TestCase):
             follow_redirects=True)
         self.assertIn('New Todo', response.data)
 
+    def test_can_delete_todo_through_post_to_delete_todo(self):
+        todo = models.Todo(name='first todo')
+        db.session.add(todo)
+        db.session.commit()
+        self.app.post('/delete-todo', data={'id': '1'})
+        self.assertEqual(0, len(models.Todo.query.all()))
 
 if __name__ == '__main__':
     unittest.main()
