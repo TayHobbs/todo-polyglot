@@ -24,3 +24,12 @@ def delete_todo():
     db.session.delete(todo)
     db.session.commit()
     return redirect(url_for('index'))
+
+
+@app.route('/edit-todo', methods=['POST'])
+def edit_todo():
+    print request.form['id'], request.form['todo']
+    todo = models.Todo.query.get(request.form['id'])
+    todo.name = request.form['todo']
+    db.session.commit()
+    return redirect(url_for('index'))

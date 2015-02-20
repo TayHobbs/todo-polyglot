@@ -44,5 +44,17 @@ class AppTestCase(unittest.TestCase):
         self.app.post('/delete-todo', data={'id': '1'})
         self.assertEqual(0, len(models.Todo.query.all()))
 
+    def test_can_edit_todo_through_post_to_edit_todo(self):
+        todo = models.Todo(name='first todo')
+        db.session.add(todo)
+        db.session.commit()
+        db.session.commit()
+        response = self.app.post(
+            '/edit-todo',
+            data={'id': '1', 'todo': 'edited todo'},
+            follow_redirects=True)
+        self.assertIn('edited todo', response.data)
+
+
 if __name__ == '__main__':
     unittest.main()

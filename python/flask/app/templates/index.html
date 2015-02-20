@@ -19,9 +19,13 @@
         <label for="toggle-all">Mark all as complete</label>
         <ul id="todo-list">
           {% for todo in todos %}
-            <li class="">
+            <li class="editing">
                 <input type="checkbox" class="toggle">
-                <label>{{todo.name}}</label>
+                <form action="/edit-todo" method="POST">
+                  <input type="text" name="id" value={{todo.id}} style="display: none;">
+                  <input type="text" class="edit" name="todo" value={{todo.name}} />
+                  <input type="submit" name="submit" value="Add" style="display: none;"/>
+                </form>
                 <form action="/delete-todo" method="POST">
                   <button type="submit" name="id" value={{todo.id}} class="destroy"></button>
                 </form>
