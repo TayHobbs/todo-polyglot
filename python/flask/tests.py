@@ -79,6 +79,16 @@ class AppTestCase(unittest.TestCase):
         self.app.post('/completed', data={'id': complete.id})
         self.assertEqual(True, models.Todo.query.get(1).completed)
 
+    def test_active_view_only_shows_active_todos(self):
+        complete = models.Todo(name='completed todo', completed=True)
+        incomplete = models.Todo(name='incomplete todo', completed=False)
+        db.session.add(complete)
+        db.session.add(incomplete)
+        db.session.commit()
+        response = self.app.get('/active')
+        self.assertNotIn('completed todo', response.data)
+        self.assertIn('incomplete todo', response.data)
+
 
 if __name__ == '__main__':
     unittest.main()

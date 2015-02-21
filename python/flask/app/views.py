@@ -47,3 +47,9 @@ def completed():
             todo.completed = True
         db.session.commit()
         return redirect(url_for('index'))
+
+
+@app.route('/active')
+def active():
+    todos = models.Todo.query.filter_by(completed=False)
+    return render_template('active.html', todos=todos)
