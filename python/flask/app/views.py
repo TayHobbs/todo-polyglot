@@ -12,7 +12,7 @@ def index():
 
 @app.route('/add-todo', methods=['POST'])
 def add_todo():
-    todo = models.Todo(name=request.form['todo'])
+    todo = models.Todo(name=request.form['todo'], completed=False)
     db.session.add(todo)
     db.session.commit()
     return redirect(url_for('index'))
@@ -28,8 +28,22 @@ def delete_todo():
 
 @app.route('/edit-todo', methods=['POST'])
 def edit_todo():
-    print request.form['id'], request.form['todo']
     todo = models.Todo.query.get(request.form['id'])
     todo.name = request.form['todo']
     db.session.commit()
     return redirect(url_for('index'))
+
+
+@app.route('/completed', methods=['GET', 'POST'])
+def completed():
+    if request.method == 'GET':
+        todos = models.Todo.query.filter_by(completed=True)
+        return render_template('completed.html', todos=todos)
+    else:
+        todo = models.Todo.query.get(request.form['id'])
+        if todo.completed:
+            todo.completed = False
+        else:
+            todo.completed = True
+        db.session.commit()
+        return redirect(url_for('index'))

@@ -23,14 +23,14 @@ class AppTestCase(unittest.TestCase):
         response = self.app.get('/')
         self.assertIn('What needs to be done?', response.data)
 
-    def test_todos_show_up_on_index(self):
-        todo = models.Todo(name='first todo')
-        db.session.add(todo)
-        db.session.commit()
-        response = self.app.get('/')
-        self.assertIn('first todo', response.data)
-
     def test_can_add_todo_through_post_to_add_todo(self):
+        self.app.post(
+            '/add-todo',
+            data={'todo': 'New Todo'},
+            follow_redirects=True)
+        self.assertEqual(False, models.Todo.query.get(1).completed)
+
+    def test_creating_todo_defaults_to_incomplete(self):
         response = self.app.post(
             '/add-todo',
             data={'todo': 'New Todo'},
@@ -54,6 +54,30 @@ class AppTestCase(unittest.TestCase):
             data={'id': '1', 'todo': 'edited todo'},
             follow_redirects=True)
         self.assertIn('edited todo', response.data)
+
+    def test_completed_view_only_shows_completed_todos(self):
+        complete = models.Todo(name='completed todo', completed=True)
+        incomplete = models.Todo(name='incomplete todo', completed=False)
+        db.session.add(complete)
+        db.session.add(incomplete)
+        db.session.commit()
+        response = self.app.get('/completed')
+        self.assertIn('completed todo', response.data)
+        self.assertNotIn('incomplete todo', response.data)
+
+    def test_completed_todos_route_switches_from_true_to_false(self):
+        complete = models.Todo(name='completed todo', completed=True)
+        db.session.add(complete)
+        db.session.commit()
+        self.app.post('/completed', data={'id': complete.id})
+        self.assertEqual(False, models.Todo.query.get(1).completed)
+
+    def test_completed_todos_route_switches_from_false_to_true(self):
+        complete = models.Todo(name='completed todo', completed=False)
+        db.session.add(complete)
+        db.session.commit()
+        self.app.post('/completed', data={'id': complete.id})
+        self.assertEqual(True, models.Todo.query.get(1).completed)
 
 
 if __name__ == '__main__':
