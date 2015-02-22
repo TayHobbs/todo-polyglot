@@ -53,3 +53,12 @@ def completed():
 def active():
     todos = models.Todo.query.filter_by(completed=False)
     return render_template('active.html', todos=todos)
+
+
+@app.route('/clear-completed', methods=['POST'])
+def clear_completed():
+    todos = models.Todo.query.filter_by(completed=True)
+    for todo in todos:
+        db.session.delete(todo)
+        db.session.commit()
+    return redirect(url_for('index'))

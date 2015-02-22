@@ -89,6 +89,28 @@ class AppTestCase(unittest.TestCase):
         self.assertNotIn('completed todo', response.data)
         self.assertIn('incomplete todo', response.data)
 
+    def test_clear_all_completed_through_post_to_clear_completed_view(self):
+        complete = models.Todo(name='completed todo', completed=True)
+        complete_two = models.Todo(name='complete todo', completed=True)
+        db.session.add(complete)
+        db.session.add(complete_two)
+        db.session.commit()
+        self.assertEqual(2, len(models.Todo.query.all()))
+
+        self.app.post('/clear-completed')
+        self.assertEqual(0, len(models.Todo.query.all()))
+
+    def test_clear_completed_doesnt_delete_active_todos(self):
+        complete = models.Todo(name='completed todo', completed=True)
+        incomplete = models.Todo(name='complete todo', completed=False)
+        db.session.add(complete)
+        db.session.add(incomplete)
+        db.session.commit()
+        self.assertEqual(2, len(models.Todo.query.all()))
+
+        self.app.post('/clear-completed')
+        self.assertEqual(1, len(models.Todo.query.all()))
+
 
 if __name__ == '__main__':
     unittest.main()
