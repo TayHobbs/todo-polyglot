@@ -5,6 +5,7 @@ class TodosController < ApplicationController
   # GET /todos.json
   def index
     @todos = Todo.all
+    @todo = Todo.new
   end
 
   # GET /todos/1
@@ -28,7 +29,7 @@ class TodosController < ApplicationController
 
     respond_to do |format|
       if @todo.save
-        format.html { redirect_to @todo, notice: 'Todo was successfully created.' }
+        format.html { redirect_to :root }
         format.json { render :show, status: :created, location: @todo }
       else
         format.html { render :new }
@@ -69,6 +70,7 @@ class TodosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def todo_params
-      params.require(:todo).permit(:name, :completed)
+      params.require(:todo).permit(:name)
+
     end
 end

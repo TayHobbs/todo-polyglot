@@ -1,29 +1,48 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Todos</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Completed</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @todos.each do |todo| %>
-      <tr>
-        <td><%= todo.name %></td>
-        <td><%= todo.completed %></td>
-        <td><%= link_to 'Show', todo %></td>
-        <td><%= link_to 'Edit', edit_todo_path(todo) %></td>
-        <td><%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<section id="todoapp">
+  <header id="header">
+    <h1>todos</h1>
+    <%= form_for(@todo) do |todo| %>
+      <%= todo.text_field :name, :id=>"new-todo", :placeholder=>"What needs to be done?", :autofocus=>true %>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Todo', new_todo_path %>
+  </header>
+  <section id="main">
+    <input id="toggle-all" type="checkbox">
+    <label for="toggle-all">Mark all as complete</label>
+    <ul id="todo-list">
+        <li class="editing">
+            <form action="/completed" method="POST">
+              <input type="text" name="id" value="" style="display: none;">
+                <input type="checkbox" class="toggle" value="" onclick="this.form.submit();" checked />
+            </form>
+            <form action="/edit-todo" method="POST">
+              <input type="text" name="id" value="" style="display: none;">
+              <input type="text" class="edit" name="todo" value="" />
+              <input type="submit" name="submit" value="Add" style="display: none;"/>
+            </form>
+            <form action="/delete-todo" method="POST">
+              <button type="submit" name="id" value="" class="destroy"></button>
+            </form>
+        </li>
+    </ul>
+  </section>
+  <footer id="footer">
+    <span id="todo-count"></span>
+    <ul id="filters">
+      <li>
+        <a href="/" class="selected">All</a>
+      </li>
+      <li>
+        <a href="/active">Active</a>
+      </li>
+      <li>
+        <a href="/completed">Completed</a>
+      </li>
+    </ul>
+    <form action="/clear-completed" method="POST">
+      <button type="submit" id="clear-completed">Clear completed</button>
+    </form>
+  </footer>
+</section>
+<footer id="info">
+  <p>HTML and CSS credit: <a href="http://todomvc.com">TodoMVC</a></p>
+</footer>
