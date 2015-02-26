@@ -9,20 +9,13 @@
     <input id="toggle-all" type="checkbox">
     <label for="toggle-all">Mark all as complete</label>
     <ul id="todo-list">
+      <% @todos.each do |todo| %>
         <li class="editing">
-            <form action="/completed" method="POST">
-              <input type="text" name="id" value="" style="display: none;">
-                <input type="checkbox" class="toggle" value="" onclick="this.form.submit();" checked />
-            </form>
-            <form action="/edit-todo" method="POST">
-              <input type="text" name="id" value="" style="display: none;">
-              <input type="text" class="edit" name="todo" value="" />
-              <input type="submit" name="submit" value="Add" style="display: none;"/>
-            </form>
-            <form action="/delete-todo" method="POST">
-              <button type="submit" name="id" value="" class="destroy"></button>
-            </form>
+            <%= form_for(todo) do |edit_todo| %>
+              <%= edit_todo.text_field :name, :class=>"edit"%>
+            <% end %>
         </li>
+      <% end %>
     </ul>
   </section>
   <footer id="footer">
