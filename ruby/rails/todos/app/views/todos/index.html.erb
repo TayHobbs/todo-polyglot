@@ -11,9 +11,15 @@
     <ul id="todo-list">
       <% @todos.each do |todo| %>
         <li class="editing">
+            <form action="/completed" method="POST">
+              <input type="text" name="id" value="" style="display: none;">
+              <input type="checkbox" class="toggle" value="" onclick="this.form.submit();" checked />
+            </form>
             <%= form_for(todo) do |edit_todo| %>
               <%= edit_todo.text_field :name, :class=>"edit"%>
             <% end %>
+
+            <%= link_to "", todo_path(todo), method: :delete, :class=>"destroy" %>
         </li>
       <% end %>
     </ul>
