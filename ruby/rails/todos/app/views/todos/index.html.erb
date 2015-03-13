@@ -11,10 +11,13 @@
     <ul id="todo-list">
       <% @todos.each do |todo| %>
         <li class="editing">
-            <form action="/completed" method="POST">
-              <input type="text" name="id" value="" style="display: none;">
-              <input type="checkbox" class="toggle" value="" onclick="this.form.submit();" checked />
-            </form>
+            <%= form_for(todo) do |edit_todo| %>
+              <%= edit_todo.check_box :completed, :class=>"toggle", :onclick => "this.form.submit()" %>
+            <% end %>
+            <%# <form action="/completed" method="POST"> %>
+            <%#   <input type="text" name="id" value="" style="display: none;"> %>
+            <%#   <input type="checkbox" class="toggle" value="" onclick="this.form.submit();" checked /> %>
+            <%# </form> %>
             <%= form_for(todo) do |edit_todo| %>
               <%= edit_todo.text_field :name, :class=>"edit"%>
             <% end %>
