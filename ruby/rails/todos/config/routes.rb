@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'todos/index'
+  get 'completed', :to => 'todos#completed'
 
   resources :todos
 

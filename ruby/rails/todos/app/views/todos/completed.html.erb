@@ -1,0 +1,47 @@
+<section id="todoapp">
+  <header id="header">
+    <h1>todos</h1>
+    <%= form_for(@todo) do |todo| %>
+      <%= todo.text_field :name, :id=>"new-todo", :placeholder=>"What needs to be done?", :autofocus=>true %>
+    <% end %>
+  </header>
+  <section id="main">
+    <input id="toggle-all" type="checkbox">
+    <label for="toggle-all">Mark all as complete</label>
+    <ul id="todo-list">
+      <% @todos.each do |todo| %>
+        <li class="editing">
+            <%= form_for(todo) do |edit_todo| %>
+              <%= edit_todo.check_box :completed, :class=>"toggle", :onclick => "this.form.submit()" %>
+            <% end %>
+            <%= form_for(todo) do |edit_todo| %>
+              <%= edit_todo.text_field :name, :class=>"edit"%>
+            <% end %>
+
+            <%= link_to "", todo_path(todo), method: :delete, :class=>"destroy" %>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+  <footer id="footer">
+    <span id="todo-count"></span>
+    <ul id="filters">
+      <li>
+        <a href="/">All</a>
+      </li>
+      <li>
+        <a href="/active">Active</a>
+      </li>
+      <li>
+        <a href="/completed" class="selected">Completed</a>
+      </li>
+    </ul>
+    <form action="/clear-completed" method="POST">
+      <button type="submit" id="clear-completed">Clear completed</button>
+    </form>
+  </footer>
+</section>
+<footer id="info">
+  <p>HTML and CSS credit: <a href="http://todomvc.com">TodoMVC</a></p>
+</footer>
+
