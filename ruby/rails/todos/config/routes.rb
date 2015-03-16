@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'todos/index'
   get 'completed', :to => 'todos#completed'
   get 'active', :to => 'todos#active'
+  get 'clear-completed', :to => 'todos#clear_completed'
 
   resources :todos
 

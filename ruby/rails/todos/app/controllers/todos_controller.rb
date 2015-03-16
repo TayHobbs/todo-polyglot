@@ -51,6 +51,14 @@ class TodosController < ApplicationController
     @todo = Todo.new
   end
 
+  def clear_completed
+    todos = Todo.where :completed => true
+    todos.each do |todo|
+      todo.destroy
+    end
+    redirect_to root_url
+  end
+
   private
     def set_todo
       @todo = Todo.find(params[:id])

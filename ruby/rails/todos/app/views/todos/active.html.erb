@@ -36,9 +36,7 @@
         <a href="/completed">Completed</a>
       </li>
     </ul>
-    <form action="/clear-completed" method="POST">
-      <button type="submit" id="clear-completed">Clear completed</button>
-    </form>
+    <%= link_to "Clear Completed", "/clear-completed", :id=>"clear-completed" %>
   </footer>
 </section>
 <footer id="info">
