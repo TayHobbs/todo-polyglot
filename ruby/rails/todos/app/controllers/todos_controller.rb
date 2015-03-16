@@ -52,6 +52,11 @@ class TodosController < ApplicationController
     @todo = Todo.new
   end
 
+  def active
+    @todos = Todo.where :completed => false
+    @todo = Todo.new
+  end
+
   private
     def set_todo
       @todo = Todo.find(params[:id])
