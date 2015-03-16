@@ -2,18 +2,12 @@ class TodosController < ApplicationController
   before_action :set_todo, only: [:show, :edit, :update, :destroy]
 
   def index
-    @todos = Todo.all
+    @todos = Todo.order("created_at DESC").all
     @todo = Todo.new
-  end
-
-  def show
   end
 
   def new
     @todo = Todo.new
-  end
-
-  def edit
   end
 
   def create
@@ -48,12 +42,12 @@ class TodosController < ApplicationController
   end
 
   def completed
-    @todos = Todo.where :completed => true
+    @todos = Todo.order("created_at DESC").where :completed => true
     @todo = Todo.new
   end
 
   def active
-    @todos = Todo.where :completed => false
+    @todos = Todo.order("created_at DESC").where :completed => false
     @todo = Todo.new
   end
 
