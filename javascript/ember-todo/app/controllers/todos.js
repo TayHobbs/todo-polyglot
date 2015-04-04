@@ -18,8 +18,17 @@ export default Ember.Controller.extend({
 
       todo.save();
     },
-    deleteTodo: function(todo){
+    deleteTodo: function(todo) {
       todo.destroyRecord();
+    },
+    editTodo: function(todo) {
+      todo.toggleProperty('editing');
+    },
+    acceptChanges: function(todo) {
+      console.log(todo);
+      todo.save();
+      console.log(todo);
+      this.send('editTodo', todo);
     }
   }
 });
