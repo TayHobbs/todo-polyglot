@@ -17,6 +17,9 @@ export default Ember.Controller.extend({
       this.set('name', '');
 
       todo.save();
+    },
+    deleteTodo: function(todo){
+      todo.destroyRecord();
     }
   }
 });
