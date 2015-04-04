@@ -8,7 +8,7 @@
     <ul id="todo-list">
       {{#each model as |todo|}}
         <li class="{{if todo.completed 'completed'}}">
-          <input type="checkbox" class="toggle">
+          {{input type="checkbox" checked=todo.completed class="toggle"}}
           <label>{{todo.name}}</label><button class="destroy"></button>
         </li>
       {{/each}}
