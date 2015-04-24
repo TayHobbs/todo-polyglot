@@ -20,6 +20,11 @@ module.exports = {
     return res.redirect('/todo/index');
   },
 
+  update: function(req, res) {
+    Todo.update({ id: req.body.id }, { name: req.body.todo }).exec(function afterwards(err, updated) {});
+    return res.redirect('/todo/index');
+  },
+
   destroy: function(req, res) {
     Todo.destroy({ id: req.body.id }).exec(function createCB(err, deleted) {
       console.log('Deleted todo with name ' + deleted.name);
