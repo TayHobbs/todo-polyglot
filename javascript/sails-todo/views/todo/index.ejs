@@ -9,25 +9,25 @@
     <section id="todoapp">
       <header id="header">
         <h1>todos</h1>
-        <form action="/add-todo" method="POST">
-        <input id="new-todo" placeholder="What needs to be done?" type="text" name='todo' autofocus>
-        <input type="submit" name="submit" value="Add" style="display: none;"/>
+        <form action="add_todo" method="POST">
+          <input id="new-todo" placeholder="What needs to be done?" type="text" name='todo' autofocus>
+          <input type="submit" name="submit" value="Add" style="display: none;"/>
         </form>
       </header>
       <section id="main">
         <input id="toggle-all" type="checkbox">
         <label for="toggle-all">Mark all as complete</label>
         <ul id="todo-list">
-          {{#each todos as |todo|}}
+          <% _.forEach(todos, function(todo) { %>
             <li class="editing">
                 <form action="" method="POST">
                   <input type="text" name="id" value="" style="display: none;">
                     <input type="checkbox" class="toggle" value="" onclick="this.form.submit();" checked />
-                    {{ input type="text" class="edit" name="todo" value=todo.name }}
+                    <input type="text" class="edit" name="todo" value="<%= todo.name %>">
                   <button type="submit" name="id" value="" class="destroy"></button>
                 </form>
             </li>
-          {{/each}}
+          <% }); %>
         </ul>
       </section>
       <footer id="footer">
