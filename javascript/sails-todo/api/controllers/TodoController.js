@@ -18,6 +18,13 @@ module.exports = {
       console.log('Created todo with name ' + created.name);
     });
     return res.redirect('/todo/index');
+  },
+
+  destroy: function(req, res) {
+    Todo.destroy({ id: req.body.id }).exec(function createCB(err, deleted) {
+      console.log('Deleted todo with name ' + deleted.name);
+    });
+    return res.redirect('/todo/index');
   }
 
 };
