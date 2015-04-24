@@ -13,7 +13,7 @@ module.exports = {
     });
   },
 
-  add_todo: function(req, res) {
+  create: function(req, res) {
     Todo.create({ name: req.body.todo }).exec(function createCB(err, created) {
       console.log('Created todo with name ' + created.name);
     });
