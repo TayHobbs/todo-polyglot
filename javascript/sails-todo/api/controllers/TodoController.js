@@ -26,7 +26,7 @@ module.exports = {
   },
 
   destroy: function(req, res) {
-    Todo.destroy({ id: req.body.id }).exec(function createCB(err, deleted) {
+    Todo.destroy({ id: req.body.id }).exec(function deleteCB(err, deleted) {
       console.log('Deleted todo with name ' + deleted.name);
     });
     return res.redirect('/todo/index');
