@@ -1,0 +1,3 @@
+== Rails Todo
+
+To run locally run `rake db:migrate` and `rails server`, then visit localhost:3000.
