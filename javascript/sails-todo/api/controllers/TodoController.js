@@ -19,6 +19,12 @@ module.exports = {
     });
   },
 
+  active: function(req, res) {
+    Todo.find({ where: { completed: null }}, function(err, todos) {
+      return res.view({ todos: todos });
+    });
+  },
+
   create: function(req, res) {
     Todo.create({ name: req.body.todo }).exec(function createCB(err, created) {
       console.log('Created todo with name ' + created.name);
