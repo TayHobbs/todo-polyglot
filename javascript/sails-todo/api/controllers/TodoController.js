@@ -38,8 +38,6 @@ module.exports = {
   },
 
   update_completed: function(req, res) {
-    console.log("COMPLETED");
-    console.log(req.body);
     Todo.update({ id: req.body.id }, { completed: req.body.completed }).exec(function afterwards(err, updated) {});
     return res.redirect('/todo/index');
   },
