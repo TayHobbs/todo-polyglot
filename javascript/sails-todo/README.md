@@ -1,3 +1,3 @@
 # sails-todo
 
-a [Sails](http://sailsjs.org) application
+To run locally run: `sails lift` and visit localhost:1337
