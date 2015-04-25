@@ -20,8 +20,15 @@ module.exports = {
     return res.redirect('/todo/index');
   },
 
-  update: function(req, res) {
+  update_name: function(req, res) {
     Todo.update({ id: req.body.id }, { name: req.body.todo }).exec(function afterwards(err, updated) {});
+    return res.redirect('/todo/index');
+  },
+
+  update_completed: function(req, res) {
+    console.log("COMPLETED");
+    console.log(req.body);
+    Todo.update({ id: req.body.id }, { completed: req.body.completed }).exec(function afterwards(err, updated) {});
     return res.redirect('/todo/index');
   },
 
