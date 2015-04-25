@@ -47,6 +47,15 @@ module.exports = {
       console.log('Deleted todo with name ' + deleted.name);
     });
     return res.redirect('/todo/index');
+  },
+
+  clear_completed: function(req, res) {
+    Todo.find({ where: { completed: true }}, function(err, todos) {
+      _.forEach(todos, function(todo) {
+        Todo.destroy({ id: todo.id }).exec(function deleteCB(err, deleted) {});
+      });
+    });
+    return res.redirect('/todo/index');
   }
 
 };
