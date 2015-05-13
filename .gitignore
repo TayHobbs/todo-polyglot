@@ -12,3 +12,4 @@ pom.xml.asc
 **/node_modules/
 test.db
 app.db
+build/
