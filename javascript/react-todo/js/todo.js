@@ -65,6 +65,6 @@ var Todo = React.createClass({
 
 React.render(
   <TodoList data={data} />,
-  document.getElementById('content')
+  document.getElementById('todoapp')
 );
 
