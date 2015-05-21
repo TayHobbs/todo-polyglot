@@ -14,10 +14,10 @@ var app = app || {};
       var cleanButton = null;
 
       if (this.props.completedCount > 0) {
-        clearButton = (
+        var clearButton = (
           <button
             id='clear-completed'
-            onClick={this.props.onClearCompleted}
+            onClick={this.props.onClearCompleted}>
             Clear completed
           </button>
         );
@@ -57,6 +57,6 @@ var app = app || {};
           {clearButton}
         </footer>
       );
-    };
+    }
   });
 })();

@@ -14,6 +14,10 @@ var app = app || {};
     this.onChanges = [];
   };
 
+  app.TodoModel.prototype.subscribe = function(onChange) {
+    this.onChanges.push(onChange);
+  };
+
   app.TodoModel.prototype.inform = function() {
     Utils.store(this.key, this.todos);
     this.onChanges.forEach(function(cb) { cb(); });
@@ -46,6 +50,7 @@ var app = app || {};
     this.todos = this.todos.filter(function(candidate) {
       return candidate !== todo;
     });
+    this.inform();
   };
 
   app.TodoModel.prototype.save = function(todoToSave, text) {
