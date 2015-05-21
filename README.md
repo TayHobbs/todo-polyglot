@@ -16,3 +16,4 @@ Ruby
 JavaScript
 - Ember
 - Sails
+- React
