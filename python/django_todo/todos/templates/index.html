@@ -10,9 +10,10 @@
     <section id="todoapp">
       <header id="header">
         <h1>todos</h1>
-        <form action="/add-todo" method="POST">
-        <input id="new-todo" placeholder="What needs to be done?" type="text" name='todo' autofocus>
-        <input type="submit" name="submit" value="Add" style="display: none;"/>
+        <form action="/create" method="POST">
+          {% csrf_token %}
+          <input id="new-todo" placeholder="What needs to be done?" type="text" name='todo' autofocus>
+          <input type="submit" name="submit" value="Add" style="display: none;"/>
         </form>
       </header>
       <section id="main">
