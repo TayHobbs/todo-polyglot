@@ -8,6 +8,16 @@ def index(request):
     return render(request, 'index.html', {'todos': todos})
 
 
+def active(request):
+    todos = Todo.objects.filter(completed=False)
+    return render(request, 'active.html', {'todos': todos})
+
+
+def completed(request):
+    todos = Todo.objects.filter(completed=True)
+    return render(request, 'completed.html', {'todos': todos})
+
+
 def create(request):
     Todo.objects.create(name=request.POST['todo'], completed=False)
     return redirect('index')
@@ -32,11 +42,7 @@ def edit(request):
     return redirect('index')
 
 
-def active(request):
-    todos = Todo.objects.filter(completed=False)
-    return render(request, 'active.html', {'todos': todos})
-
-
-def completed(request):
+def clear_completed(request):
     todos = Todo.objects.filter(completed=True)
-    return render(request, 'completed.html', {'todos': todos})
+    [x.delete() for x in todos]
+    return redirect('index')

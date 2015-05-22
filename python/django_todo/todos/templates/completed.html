@@ -59,6 +59,7 @@
           </li>
         </ul>
         <form action="/clear-completed" method="POST">
+          {% csrf_token %}
           <button type="submit" id="clear-completed">Clear completed</button>
         </form>
       </footer>
