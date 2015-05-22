@@ -1,11 +1,11 @@
-from django.template import RequestContext
-from django.shortcuts import render, render_to_response
-from django.http import HttpResponse, HttpResponseRedirect
-from django.core.urlresolvers import reverse
+from django.shortcuts import render
 from django.views.generic import View
+
+from todos.models import Todo
 
 
 class Index(View):
 
     def get(self, request):
-        return HttpResponse(status=200)
+        todos = Todo.objects.all()
+        return render(request, 'index.html', {'todos': todos})

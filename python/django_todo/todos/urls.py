@@ -1,4 +1,4 @@
-from django.conf.url import patterns, url
+from django.conf.urls import patterns, url
 from todos.views import Index
 
 urlpatterns = patterns(

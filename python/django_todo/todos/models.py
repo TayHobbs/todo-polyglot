@@ -2,5 +2,5 @@ from django.db import models
 
 
 class Todo(models.Model):
-    name = models.CharField()
+    name = models.CharField(max_length=140)
     completed = models.BooleanField()
