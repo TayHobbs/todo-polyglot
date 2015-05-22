@@ -30,3 +30,8 @@ def edit(request):
     todo.name = request.POST['todo']
     todo.save()
     return redirect('index')
+
+
+def active(request):
+    todos = Todo.objects.filter(completed=False)
+    return render(request, 'active.html', {'todos': todos})
