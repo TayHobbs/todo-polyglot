@@ -22,7 +22,8 @@
         <ul id="todo-list">
           {% for todo in todos %}
             <li class="editing">
-                <form action="/completed" method="POST">
+                <form action="/complete" method="POST">
+                  {% csrf_token %}
                   <input type="text" name="id" value={{todo.id}} style="display: none;">
                   {% if todo.completed %}
                     <input type="checkbox" class="toggle" value={{todo.completed}} onclick="this.form.submit();" checked />

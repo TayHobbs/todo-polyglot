@@ -11,3 +11,10 @@ def index(request):
 def create(request):
     Todo.objects.create(name=request.POST['todo'], completed=False)
     return redirect('index')
+
+
+def complete(request):
+    todo = Todo.objects.get(pk=request.POST['id'])
+    todo.completed = not todo.completed
+    todo.save()
+    return redirect('index')
