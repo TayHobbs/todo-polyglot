@@ -18,3 +18,8 @@ def complete(request):
     todo.completed = not todo.completed
     todo.save()
     return redirect('index')
+
+
+def delete(request):
+    Todo.objects.get(pk=request.POST['id']).delete()
+    return redirect('index')

@@ -36,7 +36,8 @@
                   <input type="text" class="edit" name="todo" value={{todo.name}} />
                   <input type="submit" name="submit" value="Add" style="display: none;"/>
                 </form>
-                <form action="/delete-todo" method="POST">
+                <form action="/delete" method="POST">
+                  {% csrf_token %}
                   <button type="submit" name="id" value={{todo.id}} class="destroy"></button>
                 </form>
             </li>
