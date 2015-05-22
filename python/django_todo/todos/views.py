@@ -23,3 +23,10 @@ def complete(request):
 def delete(request):
     Todo.objects.get(pk=request.POST['id']).delete()
     return redirect('index')
+
+
+def edit(request):
+    todo = Todo.objects.get(pk=request.POST['id'])
+    todo.name = request.POST['todo']
+    todo.save()
+    return redirect('index')

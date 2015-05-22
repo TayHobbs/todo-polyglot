@@ -1,10 +1,11 @@
 from django.conf.urls import patterns, url
-from todos.views import index, create, complete, delete
+from todos.views import index, create, complete, delete, edit
 
 urlpatterns = patterns(
     '',
     url(r'^$', index, name='index'),
     url(r'^create$', create, name='create'),
     url(r'^complete$', complete, name='complete'),
-    url(r'^delete$', delete, name='delete')
+    url(r'^delete$', delete, name='delete'),
+    url(r'^edit$', edit, name='edit')
 )
