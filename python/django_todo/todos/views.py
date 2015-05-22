@@ -1,11 +1,8 @@
-from django.shortcuts import render
-from django.views.generic import View
+from django.shortcuts import render_to_response
 
 from todos.models import Todo
 
 
-class Index(View):
-
-    def get(self, request):
-        todos = Todo.objects.all()
-        return render(request, 'index.html', {'todos': todos})
+def index(request):
+    todos = Todo.objects.all()
+    return render_to_response('index.html', {'todos': todos})
