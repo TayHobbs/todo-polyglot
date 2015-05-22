@@ -35,3 +35,8 @@ def edit(request):
 def active(request):
     todos = Todo.objects.filter(completed=False)
     return render(request, 'active.html', {'todos': todos})
+
+
+def completed(request):
+    todos = Todo.objects.filter(completed=True)
+    return render(request, 'completed.html', {'todos': todos})

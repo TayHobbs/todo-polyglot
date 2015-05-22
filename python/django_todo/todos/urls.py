@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, url
-from todos.views import index, create, complete, delete, edit, active
+from todos.views import index, create, complete, delete, edit, active, completed
 
 urlpatterns = patterns(
     '',
@@ -9,4 +9,5 @@ urlpatterns = patterns(
     url(r'^delete$', delete, name='delete'),
     url(r'^edit$', edit, name='edit'),
     url(r'^active$', active, name='active'),
+    url(r'^completed$', completed, name='completed'),
 )
