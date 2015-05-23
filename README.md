@@ -9,6 +9,7 @@ Clojure
 
 Python
 - Flask
+- Django
 
 Ruby
 - Rails
