@@ -1,8 +1,11 @@
 (ns todo.core)
 
-(def todos (atom [{:id 0}]))
+(def todos (atom {0 {}}))
 
-(defn next-id []
-  (inc ((apply max-key :id @todos) :id)))
+(defn add-todo []
+  (let [todo (read-line)]
+    (swap! todos assoc 1 {:name todo :completed false} )))
 
-(defn -main [& args])
+(defn -main [& args]
+  (add-todo)
+  (println @todos))
