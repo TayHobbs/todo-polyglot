@@ -15,7 +15,7 @@
   (println "----------------------------")
   (println "Current Todos: " (seq @todos))
   (println "What would you like to do now?")
-  (println "Add new Todo - 'add'")
+  (println "Add new Todo - 'add'; Quit - q")
   (let [input (.toLowerCase (read-line))]
     (if (= "add" input)
       (add-todo))))
