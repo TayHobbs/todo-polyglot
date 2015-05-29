@@ -2,7 +2,7 @@
 
 (def next-id (atom 1))
 (def todos (atom {}))
-(defn next-action [])
+(declare next-action)
 
 (defn add-todo []
   (println "Enter Todo Name")
