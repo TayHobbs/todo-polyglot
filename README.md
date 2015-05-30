@@ -5,16 +5,16 @@ Todo app written in a variety of languages and frameworks
 Languages:
 
 Clojure
-- Compojure
+- [Compojure](https://github.com/weavejester/compojure)
 
 Python
-- Flask
-- Django
+- [Flask](http://flask.pocoo.org/)
+- [Django](https://www.djangoproject.com/)
 
 Ruby
-- Rails
+- [Rails](http://rubyonrails.org/)
 
 JavaScript
-- Ember
-- Sails
-- React
+- [Ember](http://emberjs.com/)
+- [Sails](http://sailsjs.org/#!/)
+- [React](https://facebook.github.io/react/)
