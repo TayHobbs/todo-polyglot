@@ -1,7 +1,9 @@
 (ns todo.core)
 
 (def next-id (atom 1))
+
 (def todos (atom {}))
+
 (declare next-action)
 
 (defn add-todo []
