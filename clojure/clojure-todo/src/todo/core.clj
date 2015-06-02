@@ -9,15 +9,16 @@
 (defn add-todo []
   (println "Enter Todo Name")
   (let [todo (read-line)]
-    (swap! todos assoc @next-id {:name todo :completed false} ))
+    (swap! todos assoc @next-id {:name todo :completed false}))
   (swap! next-id inc)
   (next-action))
 
 (defn next-action []
   (println "----------------------------")
-  (println "Current Todos: " (seq @todos))
-  (println "What would you like to do now?")
-  (println "Add new Todo - 'add'; Quit - q")
+  (println "Current Todos: " @todos)
+  (println "----------------------------")
+  (println (newline) "What would you like to do now?")
+  (println "Add new Todo - 'add'; Delete todo - 'delete'; Quit - 'q'")
   (let [input (.toLowerCase (read-line))]
     (if (= "add" input)
       (add-todo))))
