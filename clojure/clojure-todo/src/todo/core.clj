@@ -13,6 +13,12 @@
   (swap! next-id inc)
   (next-action))
 
+(defn delete-todo []
+  (println (newline) "Which todo would you like to delete? (Enter the id)")
+  (let [input (read-line)]
+    (swap! todos dissoc (read-string input))
+    (next-action)))
+
 (defn next-action []
   (println "----------------------------")
   (println "Current Todos: " @todos)
@@ -21,7 +27,9 @@
   (println "Add new Todo - 'add'; Delete todo - 'delete'; Quit - 'q'")
   (let [input (.toLowerCase (read-line))]
     (if (= "add" input)
-      (add-todo))))
+      (add-todo)
+      (if (= "delete" input)
+        (delete-todo)))))
 
 (defn -main [& args]
     (next-action))
