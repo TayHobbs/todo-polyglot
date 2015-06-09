@@ -5,6 +5,7 @@ Todo app written in a variety of languages and frameworks
 Languages:
 
 [Clojure](http://clojure.org/)
+- Clojure (Command line program)
 - [Compojure](https://github.com/weavejester/compojure)
 
 [Python](https://www.python.org/)
