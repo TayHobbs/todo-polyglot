@@ -20,11 +20,11 @@
     (next-action)))
 
 (defn complete-todo []
-  (println (newline) "Which todo would you like to complete? (Enter the id)")
+  (println (newline) "Which todo would you like to complete/incomplete? (Enter the id)")
   (let [input (read-line)]
     (let [todo (@todos (read-string input))]
       (swap! todos dissoc (read-string input))
-      (swap! todos assoc (read-string input) {:name (todo :name) :completed true})))
+      (swap! todos assoc (read-string input) {:name (todo :name) :completed (not (todo :completed))})))
   (next-action))
 
 (defn next-action []
@@ -32,7 +32,7 @@
   (println "Current Todos: " @todos)
   (println "----------------------------")
   (println (newline) "What would you like to do now?")
-  (println "Add new Todo - 'add'; Delete todo - 'delete'; Complete todo - 'complete'; Quit - 'q'")
+  (println "Add new Todo - 'add'; Delete todo - 'delete'; Mark todo complete/incomplete - 'complete'; Quit - 'q'")
   (let [input (.toLowerCase (read-line))]
     (if (= "add" input)
       (add-todo)
