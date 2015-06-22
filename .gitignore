@@ -13,3 +13,4 @@ pom.xml.asc
 test.db
 app.db
 build/
+.DS_Store
